@@ -3,17 +3,19 @@
 import { auth, db } from "@/firebase/admin";
 import {cookies} from "next/headers";
 
-const ONE_WEEK = 60 * 60 * 24 * 7;
+// const ONE_WEEK = 60 * 60 * 24 * 7;
+
+const ONE_HOUR = 60 * 60;
 
 export async function setSessionCookie(idToken: string) {
     const cookieStore = await cookies();
 
     const sessionCookie = await auth.createSessionCookie(idToken, {
-        expiresIn: ONE_WEEK * 1000,
+        expiresIn: ONE_HOUR * 1000,
     });
 
     cookieStore.set("session", sessionCookie, {
-        maxAge: ONE_WEEK,
+        maxAge: ONE_HOUR,
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         path: "/",

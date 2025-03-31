@@ -30,7 +30,7 @@ const InterviewCard = async ({ id, userId, role, type, techstack, createdAt }: I
 
                         <div className="flex flex-row gap-2 items-center">
                             <Image src="/star.svg" alt="star" width={22} height={22} />
-                            <p>{feedback?.totalScore || '---0'}/100</p>
+                            <p>{feedback?.totalScore || '---'}/100</p>
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@ const InterviewCard = async ({ id, userId, role, type, techstack, createdAt }: I
                             ? `/interview/${id}/feedback`
                             : `/interview/${id}`
                         }>
-                            {feedback ? 'Check Feedback' : 'View Interview'}
+                            {feedback ? "Check Feedback" : "View Interview"}
                         </Link>
                     </Button>
                 </div>
