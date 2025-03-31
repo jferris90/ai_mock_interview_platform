@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,16 +5,16 @@ import InterviewCard from "@/components/InterviewCard";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import { getInterviewsByUserId, getLatestInterviews } from "@/lib/actions/general.action";
 
-const Page = async () => {
+async function Home() {
     const user = await getCurrentUser();
 
-    const [userInterviews, latestInterviews] = await Promise.all([
+    const [ userInterviews, latestInterviews ] = await Promise.all([
         getInterviewsByUserId(user?.id!),
         getLatestInterviews({ userId: user?.id! })
     ])
 
-    const hasPastInterviews = userInterviews?.length > 0;
-    const hasUpcomingInterviews = latestInterviews?.length > 0;
+    const hasPastInterviews = userInterviews?.length! > 0;
+    const hasUpcomingInterviews = latestInterviews?.length! > 0;
 
     return (
         <>
@@ -60,4 +59,4 @@ const Page = async () => {
     );
 };
 
-export default Page;
+export default Home;
